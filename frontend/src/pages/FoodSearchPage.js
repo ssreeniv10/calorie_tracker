@@ -26,8 +26,12 @@ const FoodSearchPage = () => {
 
     setLoading(true);
     try {
+      const token = localStorage.getItem('token');
       const response = await axios.get(`${API_URL}/api/foods/search`, {
-        params: { query: searchQuery }
+        params: { query: searchQuery },
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
       });
       setSearchResults(response.data.foods || []);
     } catch (error) {
