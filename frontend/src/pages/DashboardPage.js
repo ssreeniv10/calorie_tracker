@@ -30,7 +30,7 @@ const DashboardPage = () => {
 
   const fetchDashboardData = async () => {
     try {
-      const token = localStorage.getItem('token');
+      const token = localStorage.getItem('authToken');
       const response = await axios.get(`${API_URL}/api/dashboard`, {
         params: { date: selectedDate },
         headers: {
