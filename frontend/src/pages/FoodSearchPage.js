@@ -64,6 +64,7 @@ const FoodSearchPage = () => {
     if (!selectedFood) return;
 
     try {
+      const token = localStorage.getItem('token');
       const foodEntry = {
         user_id: '', // Will be set by backend
         food_id: selectedFood.fdcId.toString(),
@@ -77,7 +78,11 @@ const FoodSearchPage = () => {
         date: new Date().toISOString().split('T')[0]
       };
 
-      await axios.post(`${API_URL}/api/food-entries`, foodEntry);
+      await axios.post(`${API_URL}/api/food-entries`, foodEntry, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
       
       toast.success(`Added ${selectedFood.description} to ${selectedMeal}!`);
       closeAddModal();
