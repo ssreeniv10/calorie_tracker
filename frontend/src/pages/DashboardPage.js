@@ -31,6 +31,12 @@ const DashboardPage = () => {
   const fetchDashboardData = async () => {
     try {
       const token = localStorage.getItem('authToken');
+      if (!token) {
+        toast.error('Please log in to view dashboard');
+        setLoading(false);
+        return;
+      }
+      
       const response = await axios.get(`${API_URL}/api/dashboard`, {
         params: { date: selectedDate },
         headers: {
@@ -40,7 +46,11 @@ const DashboardPage = () => {
       setDashboardData(response.data);
     } catch (error) {
       console.error('Error fetching dashboard data:', error);
-      toast.error('Failed to load dashboard data');
+      if (error.response?.status === 401) {
+        toast.error('Session expired. Please log in again.');
+      } else {
+        toast.error('Failed to load dashboard data');
+      }
     } finally {
       setLoading(false);
     }
