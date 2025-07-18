@@ -26,18 +26,8 @@ const FoodSearchPage = () => {
 
     setLoading(true);
     try {
-      const token = localStorage.getItem('authToken');
-      if (!token) {
-        toast.error('Please log in to search for foods');
-        setLoading(false);
-        return;
-      }
-      
       const response = await axios.get(`${API_URL}/api/foods/search`, {
-        params: { query: searchQuery },
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
+        params: { query: searchQuery }
       });
       setSearchResults(response.data.foods || []);
     } catch (error) {
