@@ -20,12 +20,14 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const token = localStorage.getItem('authToken');
     if (token) {
+      console.log('Token found in localStorage:', token.substring(0, 50) + '...');
       // Set default authorization header
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
       
       // Verify token and get user profile
       fetchUserProfile();
     } else {
+      console.log('No token found in localStorage');
       setLoading(false);
     }
   }, []);
