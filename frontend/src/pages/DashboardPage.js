@@ -30,8 +30,12 @@ const DashboardPage = () => {
 
   const fetchDashboardData = async () => {
     try {
+      const token = localStorage.getItem('token');
       const response = await axios.get(`${API_URL}/api/dashboard`, {
-        params: { date: selectedDate }
+        params: { date: selectedDate },
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
       });
       setDashboardData(response.data);
     } catch (error) {
