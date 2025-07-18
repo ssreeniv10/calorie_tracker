@@ -32,10 +32,21 @@ export const AuthProvider = ({ children }) => {
 
   const fetchUserProfile = async () => {
     try {
-      const response = await axios.get(`${API_URL}/api/profile`);
+      const token = localStorage.getItem('authToken');
+      if (!token) {
+        logout();
+        return;
+      }
+      
+      const response = await axios.get(`${API_URL}/api/profile`, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
       setUser(response.data);
     } catch (error) {
       console.error('Error fetching user profile:', error);
+      // If token is invalid or expired, logout
       logout();
     } finally {
       setLoading(false);
