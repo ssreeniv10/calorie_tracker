@@ -19,7 +19,12 @@ const WeightTrackingPage = () => {
 
   const fetchWeightEntries = async () => {
     try {
-      const response = await axios.get(`${API_URL}/api/weight-entries`);
+      const token = localStorage.getItem('token');
+      const response = await axios.get(`${API_URL}/api/weight-entries`, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
       setWeightEntries(response.data.entries || []);
     } catch (error) {
       console.error('Error fetching weight entries:', error);
