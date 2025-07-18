@@ -41,13 +41,18 @@ const WeightTrackingPage = () => {
     }
 
     try {
+      const token = localStorage.getItem('token');
       const weightEntry = {
         user_id: '', // Will be set by backend
         weight: parseFloat(newWeight),
         date: newDate
       };
 
-      await axios.post(`${API_URL}/api/weight-entries`, weightEntry);
+      await axios.post(`${API_URL}/api/weight-entries`, weightEntry, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
       
       toast.success('Weight logged successfully!');
       setShowAddModal(false);
