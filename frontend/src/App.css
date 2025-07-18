@@ -1,0 +1,80 @@
+/* Custom styles for the FitTracker app */
+.App {
+  text-align: center;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-pulse-slow {
+  animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.glass-effect {
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.nutrition-progress {
+  background: linear-gradient(90deg, #22c55e 0%, #16a34a 100%);
+  border-radius: 6px;
+  transition: width 0.5s ease-in-out;
+}
+
+.calorie-progress {
+  background: linear-gradient(90deg, #f97316 0%, #ea580c 100%);
+  border-radius: 6px;
+  transition: width 0.5s ease-in-out;
+}
+
+.meal-card {
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.meal-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.food-item {
+  border-left: 4px solid #22c55e;
+  background: linear-gradient(90deg, #f0fdf4 0%, #ffffff 100%);
+  padding: 12px;
+  margin: 8px 0;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.food-item:hover {
+  background: linear-gradient(90deg, #dcfce7 0%, #f8fafc 100%);
+  transform: translateX(4px);
+}
+
+.stat-card {
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 20px -4px rgba(0, 0, 0, 0.1);
+}
