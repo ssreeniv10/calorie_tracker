@@ -41,7 +41,7 @@ const WeightTrackingPage = () => {
     }
 
     try {
-      const token = localStorage.getItem('token');
+      const token = localStorage.getItem('authToken');
       const weightEntry = {
         user_id: '', // Will be set by backend
         weight: parseFloat(newWeight),
@@ -63,7 +63,7 @@ const WeightTrackingPage = () => {
       await fetchWeightEntries();
     } catch (error) {
       console.error('Error adding weight:', error);
-      toast.error('Failed to add weight entry');
+      toast.error('Failed to add weight');
     }
   };
 
