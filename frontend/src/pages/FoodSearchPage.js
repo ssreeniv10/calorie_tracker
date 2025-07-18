@@ -27,6 +27,12 @@ const FoodSearchPage = () => {
     setLoading(true);
     try {
       const token = localStorage.getItem('authToken');
+      if (!token) {
+        toast.error('Please log in to search for foods');
+        setLoading(false);
+        return;
+      }
+      
       const response = await axios.get(`${API_URL}/api/foods/search`, {
         params: { query: searchQuery },
         headers: {
@@ -36,7 +42,11 @@ const FoodSearchPage = () => {
       setSearchResults(response.data.foods || []);
     } catch (error) {
       console.error('Error searching foods:', error);
-      toast.error('Failed to search foods');
+      if (error.response?.status === 401) {
+        toast.error('Session expired. Please log in again.');
+      } else {
+        toast.error('Failed to search foods');
+      }
     } finally {
       setLoading(false);
     }
