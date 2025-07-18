@@ -40,18 +40,13 @@ const WeightTrackingPage = () => {
     }
 
     try {
-      const token = localStorage.getItem('authToken');
       const weightEntry = {
         user_id: '', // Will be set by backend
         weight: parseFloat(newWeight),
         date: newDate
       };
 
-      await axios.post(`${API_URL}/api/weight-entries`, weightEntry, {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      });
+      await axios.post(`${API_URL}/api/weight-entries`, weightEntry);
       
       toast.success('Weight logged successfully!');
       setShowAddModal(false);
@@ -62,7 +57,11 @@ const WeightTrackingPage = () => {
       await fetchWeightEntries();
     } catch (error) {
       console.error('Error adding weight:', error);
-      toast.error('Failed to add weight');
+      if (error.response?.status === 401) {
+        toast.error('Session expired. Please log in again.');
+      } else {
+        toast.error('Failed to add weight');
+      }
     }
   };
 
