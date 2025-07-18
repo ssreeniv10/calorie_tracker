@@ -223,6 +223,17 @@ async def register(user: UserCreate):
     
     db.users.insert_one(user_dict)
     
+    # Create initial weight entry if weight was provided
+    if user.weight:
+        weight_entry = {
+            "entry_id": str(uuid.uuid4()),
+            "user_id": user_dict["user_id"],
+            "weight": user.weight,
+            "date": datetime.now().strftime("%Y-%m-%d"),
+            "timestamp": datetime.now()
+        }
+        db.weight_entries.insert_one(weight_entry)
+    
     # Create access token
     access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
     access_token = create_access_token(
