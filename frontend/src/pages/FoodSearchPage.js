@@ -64,7 +64,7 @@ const FoodSearchPage = () => {
     if (!selectedFood) return;
 
     try {
-      const token = localStorage.getItem('token');
+      const token = localStorage.getItem('authToken');
       const foodEntry = {
         user_id: '', // Will be set by backend
         food_id: selectedFood.fdcId.toString(),
