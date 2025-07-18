@@ -19,7 +19,7 @@ const WeightTrackingPage = () => {
 
   const fetchWeightEntries = async () => {
     try {
-      const token = localStorage.getItem('token');
+      const token = localStorage.getItem('authToken');
       const response = await axios.get(`${API_URL}/api/weight-entries`, {
         headers: {
           'Authorization': `Bearer ${token}`
