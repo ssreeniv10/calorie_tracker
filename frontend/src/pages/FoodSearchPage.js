@@ -64,7 +64,6 @@ const FoodSearchPage = () => {
     if (!selectedFood) return;
 
     try {
-      const token = localStorage.getItem('authToken');
       const foodEntry = {
         user_id: '', // Will be set by backend
         food_id: selectedFood.fdcId.toString(),
@@ -78,17 +77,17 @@ const FoodSearchPage = () => {
         date: new Date().toISOString().split('T')[0]
       };
 
-      await axios.post(`${API_URL}/api/food-entries`, foodEntry, {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      });
+      await axios.post(`${API_URL}/api/food-entries`, foodEntry);
       
       toast.success(`Added ${selectedFood.description} to ${selectedMeal}!`);
       closeAddModal();
     } catch (error) {
       console.error('Error adding food:', error);
-      toast.error('Failed to add food');
+      if (error.response?.status === 401) {
+        toast.error('Session expired. Please log in again.');
+      } else {
+        toast.error('Failed to add food');
+      }
     }
   };
 
