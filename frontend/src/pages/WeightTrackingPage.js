@@ -19,16 +19,15 @@ const WeightTrackingPage = () => {
 
   const fetchWeightEntries = async () => {
     try {
-      const token = localStorage.getItem('authToken');
-      const response = await axios.get(`${API_URL}/api/weight-entries`, {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      });
+      const response = await axios.get(`${API_URL}/api/weight-entries`);
       setWeightEntries(response.data.entries || []);
     } catch (error) {
       console.error('Error fetching weight entries:', error);
-      toast.error('Failed to load weight entries');
+      if (error.response?.status === 401) {
+        toast.error('Session expired. Please log in again.');
+      } else {
+        toast.error('Failed to load weight entries');
+      }
     } finally {
       setLoading(false);
     }
