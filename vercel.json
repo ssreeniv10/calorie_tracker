@@ -19,6 +19,10 @@
       "dest": "/api/index.py"
     },
     {
+      "src": "/",
+      "dest": "/frontend/build/index.html"
+    },
+    {
       "src": "/(.*)",
       "dest": "/frontend/build/$1"
     }
@@ -28,15 +32,5 @@
       "runtime": "python3.9",
       "maxDuration": 10
     }
-  },
-  "rewrites": [
-    {
-      "source": "/api/(.*)",
-      "destination": "/api/index.py"
-    },
-    {
-      "source": "/(.*)",
-      "destination": "/frontend/build/index.html"
-    }
-  ]
+  }
 }
