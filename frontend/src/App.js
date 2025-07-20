@@ -15,7 +15,7 @@ import './App.css';
 function App() {
   return (
     <AuthProvider>
-      <Router>
+      <Router basename="/fittracker">
         <div className="App min-h-screen bg-gray-50">
           <Toaster position="top-right" />
           <AppRoutes />
