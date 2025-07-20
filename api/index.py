@@ -531,5 +531,6 @@ async def health_check():
     return {"status": "healthy", "timestamp": datetime.now()}
 
 # Vercel handler
-def handler(request, response):
-    return app(request, response)
+from mangum import Mangum
+
+handler = Mangum(app)
