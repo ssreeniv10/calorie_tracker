@@ -26,7 +26,7 @@ Since GitHub Pages only hosts static content, you need to deploy the backend sep
 #### Option 1: Keep Current Cloud Backend (Recommended)
 Update `/frontend/.env`:
 ```env
-REACT_APP_BACKEND_URL=https://af81877e-c1db-45e0-9ee5-286b0dda071b.preview.emergentagent.com
+REACT_APP_BACKEND_URL=https://d2e118a6-e036-4cb2-8cac-1ab301f4b134.preview.emergentagent.com
 ```
 
 #### Option 2: Deploy Backend to Heroku/Railway/Render
