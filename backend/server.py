@@ -19,10 +19,15 @@ load_dotenv()
 
 app = FastAPI(title="FitTracker API", version="1.0.0")
 
-# CORS middleware
+# CORS middleware - Updated for production
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=[
+        "https://*.github.io",
+        "https://*.herokuapp.com", 
+        "http://localhost:3000",
+        "https://f21da611-9add-4dfc-8287-1dc23aabf642.preview.emergentagent.com"
+    ],
     allow_credentials=True,
     allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allow_headers=["*"],
