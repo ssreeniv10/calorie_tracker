@@ -26,7 +26,7 @@ app.add_middleware(
         "https://*.github.io",
         "https://*.herokuapp.com", 
         "http://localhost:3000",
-        "https://f21da611-9add-4dfc-8287-1dc23aabf642.preview.emergentagent.com"
+        "https://af81877e-c1db-45e0-9ee5-286b0dda071b.preview.emergentagent.com"
     ],
     allow_credentials=True,
     allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
